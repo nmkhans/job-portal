@@ -32,7 +32,7 @@ const NavLinks = () => {
 const Header = () => {
   return (
     <header>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-accent">
         <div className="container mx-auto flex">
           <div className="navbar-start">
             <div className="dropdown">
