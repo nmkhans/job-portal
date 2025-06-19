@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
+import { useAuthContext } from "../../context/AuthContext/AuthContext";
+import { toast } from "react-toastify";
 
 const NavLinks = () => {
   return (
@@ -30,6 +32,13 @@ const NavLinks = () => {
 };
 
 const Header = () => {
+  const { user, loading, logoutUser } = useAuthContext();
+
+  const handleLogout = () => {
+    logoutUser();
+    toast.success("Logout successful.");
+  };
+
   return (
     <header>
       <div className="navbar bg-accent">
@@ -60,9 +69,23 @@ const Header = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <a className="btn btn-primary hover:btn-secondary text-white">
-              Sign in
-            </a>
+            {loading ? (
+              <span className="loading loading-spinner loading-xl text-primary"></span>
+            ) : user ? (
+              <button
+                onClick={handleLogout}
+                className="btn btn-primary hover:btn-secondary text-white"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="btn btn-primary hover:btn-secondary text-white"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
