@@ -1,6 +1,7 @@
 import { FaGoogle } from "react-icons/fa6";
 import { useAuthContext } from "../../context/AuthContext/AuthContext";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser, loading, setLoading } = useAuthContext();
@@ -16,12 +17,14 @@ const Login = () => {
       const res = await loginUser(email, password);
 
       if (res.user.accessToken) {
-        console.log(res);
+        toast.success("Login successful.");
 
         setLoading(false);
       }
     } catch (err) {
+      toast.error("Something went wrong!");
       console.log(err);
+      setLoading(false);
     }
   };
 
