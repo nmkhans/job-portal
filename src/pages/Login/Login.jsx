@@ -1,10 +1,12 @@
 import { FaGoogle } from "react-icons/fa6";
 import { useAuthContext } from "../../context/AuthContext/AuthContext";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser, loading, setLoading } = useAuthContext();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Login = () => {
         toast.success("Login successful.");
 
         setLoading(false);
+        navigate(location?.state?.from || "/");
       }
     } catch (err) {
       toast.error("Something went wrong!");

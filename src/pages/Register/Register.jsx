@@ -1,11 +1,13 @@
 import { FaGoogle } from "react-icons/fa6";
 import { useAuthContext } from "../../context/AuthContext/AuthContext";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const { createUser, loading, setLoading } = useAuthContext();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -24,12 +26,14 @@ const Register = () => {
         });
 
         toast.success("Registration successful.");
+
         setLoading(false);
+        navigate(location?.state?.from || "/");
       }
     } catch (err) {
-      toast.error("Something went wrong!")
+      toast.error("Something went wrong!");
       console.log(err);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
