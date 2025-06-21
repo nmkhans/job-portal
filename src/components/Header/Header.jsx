@@ -13,7 +13,7 @@ const NavLinks = () => {
         <Link to="/">Find a job</Link>
       </li>
       <li>
-        <Link to="/">Recruiters</Link>
+        <Link to="/my-applications">My Applications</Link>
       </li>
       <li>
         <Link to="/">Candidates</Link>
