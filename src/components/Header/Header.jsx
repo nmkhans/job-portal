@@ -16,10 +16,10 @@ const NavLinks = () => {
         <Link to="/my-applications">My Applications</Link>
       </li>
       <li>
-        <Link to="/">Candidates</Link>
+        <Link to="/add-job">Add Job</Link>
       </li>
       <li>
-        <Link to="/">Pages</Link>
+        <Link to="/my-jobs">My Jobs</Link>
       </li>
       <li>
         <Link to="/">Blogs</Link>
