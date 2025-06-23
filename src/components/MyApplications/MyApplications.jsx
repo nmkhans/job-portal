@@ -10,11 +10,16 @@ const MyApplications = () => {
 
   useEffect(() => {
     const fetchApplications = async () => {
-      const res = await axios.get(
-        `http://localhost:9000/applications?email=${user.email}`
-      );
+      try {
+        const res = await axios.get(
+          `http://localhost:9000/applications?email=${user.email}`,
+          { withCredentials: true }
+        );
 
-      setApplications(res.data.data);
+        setApplications(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchApplications();
   }, [user]);
